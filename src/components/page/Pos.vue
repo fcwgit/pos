@@ -239,6 +239,7 @@ export default {
   .goods-type{
     clear: both;
   }
+  /* 设置边距 */
   .cookList{
     padding: 2px;
     margin: 2px;
