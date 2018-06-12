@@ -18,6 +18,14 @@ export default {
   name: 'App',
   components:{
     leftNav
+  },
+  mounted(){
+    let w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    let h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    // console.log(w);
+    // console.log(h);
+    document.getElementById("app").style.width = w + 'px';
+    document.getElementById("app").style.height = h + 'px';
   }
 }
 </script>
@@ -27,9 +35,11 @@ export default {
   font-family: 'Microsoft YaHei','Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: left; */
   color: #2c3e50;
   /* margin-top: 60px; */
+  /* width: 1200px;
+  height: 1000px; */
 }
 .main{
   float: left;
@@ -37,5 +47,6 @@ export default {
   background-color: #EFF2F7;
   height: 100%;
   overflow: hidden;
+  
 }
 </style>

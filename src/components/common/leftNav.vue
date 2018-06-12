@@ -1,36 +1,47 @@
 <template>
     <div class="left-nav">
         <ul>
-            <li>
-                <i class="icon iconfont icon-goumai"></i>
-                <div>购买</div>
+            <li @click="goHome">
+                <!-- <i class="el-icon-news"></i> -->
+                <div class="iconfont">
+                    首页
+                </div>
+            </li>
+            <li @click="queryProject">
+                <!-- <i class="el-icon-search"></i> -->
+                <div class="iconfont">项目</div>
+            </li>
+            <li @click="createProject">
+                <!-- <i class="el-icon-plus"></i> -->
+                <div class="iconfont">新增</div>
+            </li>
+            <li @click="transfer">
+                <!-- <i class="el-icon-document"></i> -->
+                <div class="iconfont">统计</div>
             </li>
             <li>
-                <i class="icon iconfont icon-dianpu"></i>
-                <div>店铺</div>
-            </li>
-            <li>
-                <i class="icon iconfont icon-hanbao"></i>
-                <div>商品</div>
-            </li>
-            <li>
-                <i class="icon iconfont icon-huiyuanqia"></i>
-                <div>会员</div>
-            </li>
-            <li>
-                <i class="icon iconfont icon-zuanshi"></i>
-                <div>统计</div>
-            </li>
-            <li>
-                <i class="icon iconfont icon-gongnengjianyi"></i>
-                <div>设置</div>
+                <!-- <i class="el-icon-setting"></i> -->
+                <div class="iconfont">设置</div>
             </li>
         </ul>
     </div>
 </template>
  <script>
  export default {
-     
+     methods:{
+         goHome(){
+             this.$router.push('/home');
+         },
+         queryProject(){
+             this.$router.push('/');
+         },
+         createProject(){
+             this.$router.push('/createProject');
+         },
+         transfer(){
+             this.$router.push('/transfer');
+         }
+     }
  }
  </script>
  <style>
@@ -43,7 +54,8 @@
         width: 5%;
     }
     .iconfont{
-        font-size: 24px;
+        font-family: "Microsoft YaHei";
+        font-size: 14px;
     }
     .left-nav ul{
         padding: 0px;
@@ -54,6 +66,7 @@
         text-align: center;
         border-bottom: 1px solid #20a0ff;
         padding: 10px;
+        cursor: pointer;
     }
  </style>
  
