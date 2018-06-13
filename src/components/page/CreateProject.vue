@@ -49,7 +49,7 @@ export default {
       rules: {
         name: [
           { required: true, message: "请输入项目名称", trigger: "blur" },
-          { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" }
+          { min: 3, max: 50, message: "长度在 3 到 50 个字符", trigger: "blur" }
         ],
         desc: [{ required: true, message: "请填写项目简介", trigger: "blur" }],
         author:[

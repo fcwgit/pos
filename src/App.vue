@@ -22,6 +22,9 @@ export default {
   mounted(){
     let w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     let h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    if(h<950){
+      h = 950;
+    }
     // console.log(w);
     // console.log(h);
     document.getElementById("app").style.width = w + 'px';
