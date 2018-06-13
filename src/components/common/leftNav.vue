@@ -9,7 +9,7 @@
             </li>
             <li @click="queryProject">
                 <!-- <i class="el-icon-search"></i> -->
-                <div class="iconfont">项目</div>
+                <div class="iconfont">查询</div>
             </li>
             <li @click="createProject">
                 <!-- <i class="el-icon-plus"></i> -->
@@ -33,7 +33,7 @@
              this.$router.push('/home');
          },
          queryProject(){
-             this.$router.push('/');
+             this.$router.push('/queryProject');
          },
          createProject(){
              this.$router.push('/createProject');
