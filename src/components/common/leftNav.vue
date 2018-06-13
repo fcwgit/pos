@@ -15,9 +15,9 @@
                 <!-- <i class="el-icon-plus"></i> -->
                 <div class="iconfont">新增</div>
             </li>
-            <li @click="transfer">
+            <li @click="login">
                 <!-- <i class="el-icon-document"></i> -->
-                <div class="iconfont">统计</div>
+                <div class="iconfont">登录</div>
             </li>
             <li>
                 <!-- <i class="el-icon-setting"></i> -->
@@ -40,6 +40,9 @@
          },
          transfer(){
              this.$router.push('/transfer');
+         },
+         login(){
+             this.$router.push('/login');
          }
      }
  }

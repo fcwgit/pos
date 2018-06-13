@@ -2,22 +2,22 @@
   <div class="content">
     <!-- Hello AwesomePos Demo. -->
     <el-row>
-      <el-col :span='13' class="pos-order" id="order-list">
+      <el-col :span='13' class="pos-order" >
         <el-tabs style="padding:5px"> 
           <el-tab-pane label="项目信息">
             <el-form label-width="120px" class="demo-ruleForm">
               <el-form-item label="检查项目名称" >
-                <el-input v-model="projectName" :disabled="true">
+                <el-input v-model="projectName">
                 </el-input>
               </el-form-item>
               <el-form-item label="检查项目描述" >
                 <!-- <el-input v-model="projectDesc" :disabled="true">
                 </el-input> -->
-                <el-input type="textarea" :rows="6" :disabled="true" v-model="projectDesc">
+                <el-input type="textarea" :rows="6" v-model="projectDesc">
                 </el-input>
               </el-form-item>
               <el-form-item label="检查年份" >
-                <el-input v-model="projectDate" :disabled="true">
+                <el-input v-model="projectDate">
                 </el-input>
               </el-form-item>
               <el-form-item label="检查对象" >
@@ -61,11 +61,11 @@
                 filterable
                 :filter-method="filterMethod"
                 :titles="['资源库', '备选项']"
-                filter-placeholder="请输入城市拼音"
+                filter-placeholder="请输入机构拼音"
                 v-model="bankSelected"
                 height="150"
                 size="small"
-                @change="handleChange"
+                @change="bankHandleChange"
                 :data="bankAll">
               </el-transfer>
 
@@ -95,13 +95,13 @@
                   </template>
                 </el-table-column>
               </el-table>
-            <div class="totalDiv" > 
-              <small>数量：</small>{{bankSelected.length}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <small>数量：</small><input maxlength="3" style=”width:5px;” onkeyup="value=value.replace(/[^\d]/g,'')"></input>
-            </div>
-            <div class="div-btn" center>
-              <el-button type="success" @click="checkout()">确认</el-button>
-            </div>
+              <div class="totalDiv" > 
+                <small>数量：</small>{{bankSelected.length}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>数量：</small><input maxlength="3" style=”width:5px;” onkeyup="value=value.replace(/[^\d]/g,'')"></input>
+              </div>
+              <div class="div-btn" center>
+                <el-button type="success" @click="checkoutBank()">确认</el-button>
+              </div>
             </el-tab-pane>
           </el-tabs>
         </div>
@@ -115,20 +115,21 @@
                 filterable
                 :filter-method="filterMethod"
                 :titles="['资源库', '备选项']"
-                filter-placeholder="请输入城市拼音"
-                v-model="bankSelected"
+                filter-placeholder="请输入人名拼音"
+                v-model="leaderSelected"
                 height="150"
+                @change="leaderHandleChange"
                 size="small"
-                :data="bankAll">
+                :data="workerAll">
               </el-transfer>
 
 
-              <el-table :data="tableData" height="250" size="small">
+              <el-table :data="leaderTableData" height="250" size="small">
                 <!-- <el-table-column fixed prop="id" label="日期" width="150">
                 </el-table-column> -->
-                <el-table-column prop="name" label="姓名" width="120">
+                <el-table-column prop="pinyin" label="姓名" width="120">
                 </el-table-column>
-                <el-table-column prop="post" label="职务" width="120">
+                <el-table-column prop="label" label="职务" width="120">
                 </el-table-column>
                 <el-table-column prop="specialty" label="专长" width="120">
                 </el-table-column>
@@ -148,13 +149,15 @@
                   </template>
                 </el-table-column>
               </el-table>
+              <div class="totalDiv" > 
+                <small>数量：</small>{{leaderSelected.length}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>数量：</small><input maxlength="3" style=”width:5px;” onkeyup="value=value.replace(/[^\d]/g,'')"></input>
+              </div>
+              <div class="div-btn" center>
+                <el-button type="success" @click="checkoutLeader()">确认</el-button>
+              </div>
             </el-tab-pane>
           </el-tabs>
-          <!-- <el-tabs style="padding:5px">
-            <el-tab-pane label="机选" >
-              
-            </el-tab-pane>
-          </el-tabs> -->
         </div>
 
 
@@ -168,19 +171,20 @@
                 :filter-method="filterMethod"
                 :titles="['资源库', '备选项']"
                 filter-placeholder="请输入城市拼音"
-                v-model="bankSelected"
+                v-model="masterSelected"
+                @change="masterHandleChange"
                 height="150"
                 size="small"
-                :data="bankAll">
+                :data="workerAll">
               </el-transfer>
 
 
-              <el-table :data="tableData" height="250" size="small">
+              <el-table :data="masterTableData" height="250" size="small">
                 <!-- <el-table-column fixed prop="id" label="日期" width="150">
                 </el-table-column> -->
-                <el-table-column prop="name" label="姓名" width="120">
+                <el-table-column prop="pinyin" label="姓名" width="120">
                 </el-table-column>
-                <el-table-column prop="post" label="职务" width="120">
+                <el-table-column prop="label" label="职务" width="120">
                 </el-table-column>
                 <el-table-column prop="specialty" label="专长" width="120">
                 </el-table-column>
@@ -200,13 +204,15 @@
                   </template>
                 </el-table-column>
               </el-table>
+              <div class="totalDiv" > 
+                <small>数量：</small>{{masterSelected.length}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>数量：</small><input maxlength="3" style=”width:5px;” onkeyup="value=value.replace(/[^\d]/g,'')"></input>
+              </div>
+              <div class="div-btn" center>
+                <el-button type="success" @click="checkoutMaster()">确认</el-button>
+              </div>
             </el-tab-pane>
           </el-tabs>
-          <!-- <el-tabs style="padding:5px">
-            <el-tab-pane label="机选" >
-              
-            </el-tab-pane>
-          </el-tabs> -->
         </div>
 
 
@@ -218,19 +224,20 @@
                 :filter-method="filterMethod"
                 :titles="['资源库', '备选项']"
                 filter-placeholder="请输入城市拼音"
-                v-model="bankSelected"
+                v-model="slaverSelected"
+                @change="slaverHandleChange"
                 height="150"
                 size="small"
-                :data="bankAll">
+                :data="workerAll">
               </el-transfer>
 
 
-              <el-table :data="tableData" height="250" size="small">
+              <el-table :data="slaverTableData" height="250" size="small">
                 <!-- <el-table-column fixed prop="id" label="日期" width="150">
                 </el-table-column> -->
-                <el-table-column prop="name" label="姓名" width="120">
+                <el-table-column prop="pinyin" label="姓名" width="120">
                 </el-table-column>
-                <el-table-column prop="post" label="职务" width="120">
+                <el-table-column prop="label" label="职务" width="120">
                 </el-table-column>
                 <el-table-column prop="specialty" label="专长" width="120">
                 </el-table-column>
@@ -250,13 +257,15 @@
                   </template>
                 </el-table-column>
               </el-table>
+              <div class="totalDiv" > 
+                <small>数量：</small>{{slaverSelected.length}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <small>数量：</small><input maxlength="3" style=”width:5px;” onkeyup="value=value.replace(/[^\d]/g,'')"></input>
+              </div>
+              <div class="div-btn" center>
+                <el-button type="success" @click="checkoutSlaver()">确认</el-button>
+              </div>
             </el-tab-pane>
           </el-tabs>
-          <!-- <el-tabs style="padding:5px">
-            <el-tab-pane label="机选" >
-              
-            </el-tab-pane>
-          </el-tabs> -->
         </div>
 
       </div>
@@ -285,54 +294,54 @@ export default {
         });
         return bankAll;
       };
+    const workData =_=>{
+      const workerAll = [];
+        const workers = ['肖军', '黄建', '玉珍', '王芳', '汪洋', '高阳', '秦虹'];
+        const pinyin = ['xiaojun', 'huangjian', 'yuzhen', 'wangfang', 'wangyang', 'gaoyang', 'qinhong'];
+        const specialty = ['zookper','dubbo','kafka','redis','mongodb','docker'];
+        workers.forEach((worker, index) => {
+          workerAll.push({
+            label: worker,
+            key: pinyin[index],
+            pinyin: pinyin[index],
+            specialty:specialty[index],
+            right:''
+          });
+        });
+        return workerAll;
+    }
+      
     return {
-      projectName: '',
-      projectDesc: '',
-      projectDate:'',
-      projectTarget:'',
-      projectLeader:'',
-      projectMaster:'',
-      projectSlaver:'',
+      projectName: '深化整治银行业市场乱象的检查',
+      projectDesc: '深化整治银行业市场乱象的检查',
+      projectDate:'2018-06-04',
+      projectTarget:'国银行、农业银行',
+      projectLeader:'张三',
+      projectMaster:'李四',
+      projectSlaver:'王五',
       input11:'',
       input12:'',
       bankAll: bankData(),
+      workerAll:workData(),
       bankSelected: [],
+      leaderSelected: [],
+      masterSelected: [],
+      slaverSelected: [],
       filterMethod(query, item) {
         return item.pinyin.indexOf(query) > -1;
       },
       bankTableData:[],
-      tableData: [{
-          id: '100001',
-          name: '张三',
-          post: '科长',
-          specialty: 'Java',
-          right:''
-        }, {
-          id: '100002',
-          name: '李四',
-          post: '股长',
-          specialty: 'zookeeper',
-          right:''
-        }
-        ],
-        options: [{
-          value: 1,
-          label: '低级'
-        }, {
-          value: 2,
-          label: '中级'
-        }, {
-          value: 3,
-          label: '高级'
-        }],
-        value:'',
-        fileList3: [{
-          name: 'food.jpeg',
-          url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
-        }, {
-          name: 'food2.jpeg',
-          url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
-        }]
+      leaderTableData:[],
+      masterTableData:[],
+      slaverTableData:[],
+      value:'',
+      fileList3: [{
+        name: 'food.jpeg',
+        url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
+      }, {
+        name: 'food2.jpeg',
+        url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
+      }]
     }
   },
   methods: {
@@ -363,62 +372,112 @@ export default {
       document.getElementById("transfer3").style.display="none";
       document.getElementById("transfer4").style.display="";
     },
-    handleChange(value, direction, movedKeys) {
-        // console.log(value, direction, movedKeys);
-        // if(direction == 'right'){
-          
-        //   for(let i=0;i<movedKeys.length;i++){
-        //     for(let j=0;j<this.bankAll.length;j++){
-        //       let obj = this.bankAll[j];
-        //       if(obj.key == movedKeys[i]){
-        //         this.bankTableData.push(obj);
-        //         break;
-        //       }
-        //     }
-        //   }
-        // }else{
-        //   console.log("value="+value);
-        //   // this.bankTableData.splice
-        // }
-
-        this.bankTableData = [];
-        for(let i=0;i<value.length;i++){
-            for(let j=0;j<this.bankAll.length;j++){
-              let obj = this.bankAll[j];
-              if(obj.pinyin == value[i]){
-                this.bankTableData.push(obj);
-                break;
-              }
-            }
+    bankHandleChange(value, direction, movedKeys) {
+      this.bankTableData = [];
+      for(let i=0;i<value.length;i++){
+        for(let j=0;j<this.bankAll.length;j++){
+          let obj = this.bankAll[j];
+          if(obj.pinyin == value[i]){
+            this.bankTableData.push(obj);
+            break;
           }
-      },
-      showRender(){
-        // console.log(this.value3.length);
-        // console.log(this.value3);
-        // console.log(this.value3[0]);
-        // console.log(this.value3[1]);
-        // console.log(this.value3[2]);
-      },
-      handleClick(row) {
-        console.log(row);
-        console.log(row.id);
-        console.log(row.name);
-      },
-      checkout(){
-        if(this.bankTableData.length == 0){
-          alert("请选择机构！");
-        }
-        for(let i=0;i<this.bankTableData.length;i++){
-          let obj = this.bankTableData[i];
-          console.log("label="+obj.label);
-          this.projectTarget += "["+obj.label+"]";
         }
       }
+    },
+    leaderHandleChange(value, direction, movedKeys) {
+      this.leaderTableData = [];
+      for(let i=0;i<value.length;i++){
+          for(let j=0;j<this.workerAll.length;j++){
+            let obj = this.workerAll[j];
+            if(obj.pinyin == value[i]){
+              this.leaderTableData.push(obj);
+              break;
+            }
+          }
+        }
+    },
+    masterHandleChange(value, direction, movedKeys) {
+      this.masterTableData = [];
+      for(let i=0;i<value.length;i++){
+          for(let j=0;j<this.workerAll.length;j++){
+            let obj = this.workerAll[j];
+            if(obj.pinyin == value[i]){
+              this.masterTableData.push(obj);
+              break;
+            }
+          }
+        }
+    },
+    slaverHandleChange(value, direction, movedKeys) {
+      this.slaverTableData = [];
+      for(let i=0;i<value.length;i++){
+          for(let j=0;j<this.workerAll.length;j++){
+            let obj = this.workerAll[j];
+            if(obj.pinyin == value[i]){
+              this.slaverTableData.push(obj);
+              break;
+            }
+          }
+        }
+    },
+    showRender(){
+      // console.log(this.value3.length);
+      // console.log(this.value3);
+      // console.log(this.value3[0]);
+      // console.log(this.value3[1]);
+      // console.log(this.value3[2]);
+    },
+    handleClick(row) {
+      console.log(row);
+      console.log(row.id);
+      console.log(row.name);
+    },
+    checkoutBank(){
+      if(this.bankTableData.length == 0){
+        alert("请选择机构！");
+      }
+      this.projectTarget = '';
+      for(let i=0;i<this.bankTableData.length;i++){
+        let obj = this.bankTableData[i];
+        console.log("label="+obj.label);
+        this.projectTarget += "["+obj.label+"]";
+      }
+    },
+    checkoutLeader(){
+      if(this.leaderTableData.length == 0){
+        alert("请选择组长！");
+      }
+      this.projectLeader = '';
+      for(let i=0;i<this.leaderTableData.length;i++){
+        let obj = this.leaderTableData[i];
+        this.projectLeader += "["+obj.label+"]";
+      }
+    },
+    checkoutMaster(){
+      if(this.masterTableData.length == 0){
+        alert("请选择主查人员！");
+      }
+      this.projectMaster = '';
+      for(let i=0;i<this.masterTableData.length;i++){
+        let obj = this.masterTableData[i];
+        this.projectMaster += "["+obj.label+"]";
+      }
+    },
+    checkoutSlaver(){
+      if(this.slaverTableData.length == 0){
+        alert("请选择检查人员！");
+      }
+      this.projectSlaver = '';
+      for(let i=0;i<this.slaverTableData.length;i++){
+        let obj = this.slaverTableData[i];
+        this.projectSlaver += "["+obj.label+"]";
+      }
+    }
   },
   mounted:function(){
-    this.projectName = this.$route.params.projectName;
-    this.projectDesc = this.$route.params.projectDesc;
-    this.projectDate = this.$route.params.projectDate;
+    // this.projectName = this.$route.params.projectName;
+    // this.projectDesc = this.$route.params.projectDesc;
+    // this.projectDate = this.$route.params.projectDate;
     this.showTransfer1();
   }
     

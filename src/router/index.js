@@ -7,6 +7,8 @@ import Transfer from '@/components/page/Transfer'
 import ConformProject from '@/components/page/ConformProject'
 import QueryProject from '@/components/page/QueryProject'
 import ModifyProject from '@/components/page/ModifyProject'
+import DetailProject from '@/components/page/DetailProject'
+import Login from '@/components/page/Login'
 
 
 Vue.use(Router)
@@ -36,6 +38,12 @@ export default new Router({
     },{
       path:'/modifyProject',
       component:ModifyProject
+    },{
+      path:'/detailProject',
+      component:DetailProject
+    },{
+      path:'/login',
+      component:Login
     }
   ]
 })
