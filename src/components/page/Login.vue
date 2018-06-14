@@ -16,7 +16,7 @@
     </el-row>  
     <el-row>  
         <el-col :span="8">  
-            <el-button id="login" v-on:click="check" style="width:100%" type="primary">登录</el-button>  
+            <el-button id="login" v-on:click="check" style="width:100%" type="primary" v-loading.fullscreen.lock="fullscreenLoading">登录</el-button>  
         </el-col>  
     </el-row>  
   </div> 
@@ -30,7 +30,8 @@ export default {
   data() {  
     return{
       name : '',  
-      password : ''  
+      password : '',
+      fullscreenLoading: false
     }
   },  
   methods : {  
@@ -39,32 +40,23 @@ export default {
         var name = this.name;  
         var password = this.password;  
         if(name == '' || password == ''){  
-            this.$message({  
-                message : '账号或密码为空！',  
-                type : 'error'  
-            })  
-            return;  
-        }  
-        $.ajax({  
-            url : 'login',  
-            type : 'post',  
-            data : {  
-                name : name,  
-                password : password  
-            },  
-            success : function(data) {  
-                var result = data.result;  
-                if(result == 'true' || result == true){  
-                    alert("登录成功");  
-                }else {  
-                    alert("登录失败");  
-                }  
-            },  
-            error : function(data) {  
-                alert(data);  
-            },  
-            dataType : 'json',  
-        })  
+          this.$message({  
+              message : '账号或密码为空！',  
+              type : 'error'  
+          })  
+          return;  
+        } else{
+          this.fullscreenLoading = true;
+          setTimeout(() => {
+            this.fullscreenLoading = false;
+            this.$message({
+              message: '恭喜你，登录成功',
+              type: 'success'
+            });
+            this.$router.push('/home');
+          }, 2000);
+          
+        }
     }  
   }  
 }
@@ -77,8 +69,8 @@ export default {
       margin-bottom: 0;  
     }   */
   }  
-    .login-box {  
-        margin-top:20px;  
-        margin-left:40%;  
-    } 
+  .login-box {  
+      margin-top:20%;  
+      margin-left:40%;
+  } 
 </style>

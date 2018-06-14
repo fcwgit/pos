@@ -1,23 +1,25 @@
 <template>
-  <div class="content">
+<div>
+  <leftNav></leftNav>
+  <div >
     <!-- Hello AwesomePos Demo. -->
     <el-row>
-      <el-col :span='13' class="pos-order" >
+      <el-col :span='13' class="content">
         <el-tabs style="padding:5px"> 
           <el-tab-pane label="项目信息">
             <el-form label-width="120px" class="demo-ruleForm">
               <el-form-item label="检查项目名称" >
-                <el-input v-model="projectName">
+                <el-input v-model="projectName" >
                 </el-input>
               </el-form-item>
               <el-form-item label="检查项目描述" >
                 <!-- <el-input v-model="projectDesc" :disabled="true">
                 </el-input> -->
-                <el-input type="textarea" :rows="6" v-model="projectDesc">
+                <el-input type="textarea" :rows="6"  v-model="projectDesc">
                 </el-input>
               </el-form-item>
               <el-form-item label="检查年份" >
-                <el-input v-model="projectDate">
+                <el-input v-model="projectDate" >
                 </el-input>
               </el-form-item>
               <el-form-item label="检查对象" >
@@ -47,13 +49,10 @@
                 </el-upload>
               </el-form-item>
             </el-form>
-            
-
           </el-tab-pane>
         </el-tabs>
       </el-col>
       <el-col :span="11">
-        <div style="width: 91%;">
         <div id="transfer1">
           <el-tabs style="padding:5px">
             <el-tab-pane label="检查对象">
@@ -68,15 +67,9 @@
                 @change="bankHandleChange"
                 :data="bankAll">
               </el-transfer>
-
-
               <el-table :data="bankTableData" height="240" size="small">
-                <!-- <el-table-column fixed prop="id" label="日期" width="150">
-                </el-table-column> -->
                 <el-table-column prop="pinyin" label="别名" width="240">
                 </el-table-column>
-                <!-- <el-table-column prop="key" label="职务" width="120">
-                </el-table-column> -->
                 <el-table-column prop="label" label="行名" width="120">
                 </el-table-column>
                 <el-table-column prop="right"
@@ -99,15 +92,12 @@
                 <small>数量：</small>{{bankSelected.length}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <small>数量：</small><input maxlength="3" style=”width:5px;” onkeyup="value=value.replace(/[^\d]/g,'')"></input>
               </div>
-              <div class="div-btn" center>
+              <div class="div-btn">
                 <el-button type="success" @click="checkoutBank()">确认</el-button>
               </div>
             </el-tab-pane>
           </el-tabs>
         </div>
-
-
-
         <div id="transfer2">
           <el-tabs style="padding:5px">
             <el-tab-pane label="组长">
@@ -122,11 +112,7 @@
                 size="small"
                 :data="workerAll">
               </el-transfer>
-
-
               <el-table :data="leaderTableData" height="250" size="small">
-                <!-- <el-table-column fixed prop="id" label="日期" width="150">
-                </el-table-column> -->
                 <el-table-column prop="pinyin" label="姓名" width="120">
                 </el-table-column>
                 <el-table-column prop="label" label="职务" width="120">
@@ -159,10 +145,6 @@
             </el-tab-pane>
           </el-tabs>
         </div>
-
-
-
-
         <div id="transfer3">
           <el-tabs style="padding:5px">
             <el-tab-pane label="主查">
@@ -177,11 +159,7 @@
                 size="small"
                 :data="workerAll">
               </el-transfer>
-
-
               <el-table :data="masterTableData" height="250" size="small">
-                <!-- <el-table-column fixed prop="id" label="日期" width="150">
-                </el-table-column> -->
                 <el-table-column prop="pinyin" label="姓名" width="120">
                 </el-table-column>
                 <el-table-column prop="label" label="职务" width="120">
@@ -214,8 +192,6 @@
             </el-tab-pane>
           </el-tabs>
         </div>
-
-
         <div id="transfer4">
           <el-tabs style="padding:5px">
             <el-tab-pane label="检查人员">
@@ -230,11 +206,7 @@
                 size="small"
                 :data="workerAll">
               </el-transfer>
-
-
               <el-table :data="slaverTableData" height="250" size="small">
-                <!-- <el-table-column fixed prop="id" label="日期" width="150">
-                </el-table-column> -->
                 <el-table-column prop="pinyin" label="姓名" width="120">
                 </el-table-column>
                 <el-table-column prop="label" label="职务" width="120">
@@ -267,18 +239,27 @@
             </el-tab-pane>
           </el-tabs>
         </div>
-
-      </div>
       </el-col>
     </el-row>
   </div>
-  <!-- </div> -->
+  <div>
+    <el-row>
+      <el-col>
+        <el-button id="login" style="width:100%" type="primary">提交</el-button> 
+      </el-col>
+    </el-row>
+  </div>
+ </div> 
 </template>
 
 <script>
 import axios from "axios";
+import leftNav from '@/components/common/leftNav'
 export default {
-  name: "pos",
+  name: "conformProject",
+  components:{
+    leftNav
+  },
   data() {
     const bankData = _ => {
         const bankAll = [];
@@ -373,106 +354,116 @@ export default {
       document.getElementById("transfer4").style.display="";
     },
     bankHandleChange(value, direction, movedKeys) {
-      this.bankTableData = [];
-      for(let i=0;i<value.length;i++){
-        for(let j=0;j<this.bankAll.length;j++){
-          let obj = this.bankAll[j];
-          if(obj.pinyin == value[i]){
-            this.bankTableData.push(obj);
-            break;
-          }
-        }
-      }
-    },
-    leaderHandleChange(value, direction, movedKeys) {
-      this.leaderTableData = [];
-      for(let i=0;i<value.length;i++){
-          for(let j=0;j<this.workerAll.length;j++){
-            let obj = this.workerAll[j];
-            if(obj.pinyin == value[i]){
-              this.leaderTableData.push(obj);
-              break;
+        this.bankTableData = [];
+        for(let i=0;i<value.length;i++){
+            for(let j=0;j<this.bankAll.length;j++){
+              let obj = this.bankAll[j];
+              if(obj.pinyin == value[i]){
+                this.bankTableData.push(obj);
+                break;
+              }
             }
           }
-        }
-    },
-    masterHandleChange(value, direction, movedKeys) {
-      this.masterTableData = [];
-      for(let i=0;i<value.length;i++){
-          for(let j=0;j<this.workerAll.length;j++){
-            let obj = this.workerAll[j];
-            if(obj.pinyin == value[i]){
-              this.masterTableData.push(obj);
-              break;
+      },
+      leaderHandleChange(value, direction, movedKeys) {
+        this.leaderTableData = [];
+        for(let i=0;i<value.length;i++){
+            for(let j=0;j<this.workerAll.length;j++){
+              let obj = this.workerAll[j];
+              if(obj.pinyin == value[i]){
+                this.leaderTableData.push(obj);
+                break;
+              }
             }
           }
-        }
-    },
-    slaverHandleChange(value, direction, movedKeys) {
-      this.slaverTableData = [];
-      for(let i=0;i<value.length;i++){
-          for(let j=0;j<this.workerAll.length;j++){
-            let obj = this.workerAll[j];
-            if(obj.pinyin == value[i]){
-              this.slaverTableData.push(obj);
-              break;
+      },
+      masterHandleChange(value, direction, movedKeys) {
+        this.masterTableData = [];
+        for(let i=0;i<value.length;i++){
+            for(let j=0;j<this.workerAll.length;j++){
+              let obj = this.workerAll[j];
+              if(obj.pinyin == value[i]){
+                this.masterTableData.push(obj);
+                break;
+              }
             }
           }
+      },
+      slaverHandleChange(value, direction, movedKeys) {
+        this.slaverTableData = [];
+        for(let i=0;i<value.length;i++){
+            for(let j=0;j<this.workerAll.length;j++){
+              let obj = this.workerAll[j];
+              if(obj.pinyin == value[i]){
+                this.slaverTableData.push(obj);
+                break;
+              }
+            }
+          }
+      },
+      showRender(){
+      },
+      handleClick(row) {
+        console.log(row);
+        console.log(row.id);
+        console.log(row.name);
+      },
+      checkoutBank(){
+        if(this.bankTableData.length == 0){
+          this.$message({  
+              message : '请选择机构！',  
+              type : 'warning'  
+          })  
+          return; 
         }
-    },
-    showRender(){
-      // console.log(this.value3.length);
-      // console.log(this.value3);
-      // console.log(this.value3[0]);
-      // console.log(this.value3[1]);
-      // console.log(this.value3[2]);
-    },
-    handleClick(row) {
-      console.log(row);
-      console.log(row.id);
-      console.log(row.name);
-    },
-    checkoutBank(){
-      if(this.bankTableData.length == 0){
-        alert("请选择机构！");
+        this.projectTarget = '';
+        for(let i=0;i<this.bankTableData.length;i++){
+          let obj = this.bankTableData[i];
+          this.projectTarget += "["+obj.label+"]";
+        }
+      },
+      checkoutLeader(){
+        if(this.leaderTableData.length == 0){
+          this.$message({  
+              message : '请选择组长！',  
+              type : 'warning'  
+          })  
+          return; 
+        }
+        this.projectLeader = '';
+        for(let i=0;i<this.leaderTableData.length;i++){
+          let obj = this.leaderTableData[i];
+          this.projectLeader += "["+obj.label+"]";
+        }
+      },
+      checkoutMaster(){
+        if(this.masterTableData.length == 0){
+          this.$message({  
+              message : '请选择主查人员！',  
+              type : 'warning'  
+          })  
+          return; 
+        }
+        this.projectMaster = '';
+        for(let i=0;i<this.masterTableData.length;i++){
+          let obj = this.masterTableData[i];
+          this.projectMaster += "["+obj.label+"]";
+        }
+      },
+      checkoutSlaver(){
+        if(this.slaverTableData.length == 0){
+          this.$message({  
+              message : '请选择检查人员！',  
+              type : 'warning'  
+          })  
+          return; 
+        }
+        this.projectSlaver = '';
+        for(let i=0;i<this.slaverTableData.length;i++){
+          let obj = this.slaverTableData[i];
+          this.projectSlaver += "["+obj.label+"]";
+        }
       }
-      this.projectTarget = '';
-      for(let i=0;i<this.bankTableData.length;i++){
-        let obj = this.bankTableData[i];
-        console.log("label="+obj.label);
-        this.projectTarget += "["+obj.label+"]";
-      }
-    },
-    checkoutLeader(){
-      if(this.leaderTableData.length == 0){
-        alert("请选择组长！");
-      }
-      this.projectLeader = '';
-      for(let i=0;i<this.leaderTableData.length;i++){
-        let obj = this.leaderTableData[i];
-        this.projectLeader += "["+obj.label+"]";
-      }
-    },
-    checkoutMaster(){
-      if(this.masterTableData.length == 0){
-        alert("请选择主查人员！");
-      }
-      this.projectMaster = '';
-      for(let i=0;i<this.masterTableData.length;i++){
-        let obj = this.masterTableData[i];
-        this.projectMaster += "["+obj.label+"]";
-      }
-    },
-    checkoutSlaver(){
-      if(this.slaverTableData.length == 0){
-        alert("请选择检查人员！");
-      }
-      this.projectSlaver = '';
-      for(let i=0;i<this.slaverTableData.length;i++){
-        let obj = this.slaverTableData[i];
-        this.projectSlaver += "["+obj.label+"]";
-      }
-    }
   },
   mounted:function(){
     // this.projectName = this.$route.params.projectName;
@@ -485,61 +476,11 @@ export default {
 </script>
 
 <style scoped>
-.pos-order {
+.content {
   background-color: #f9fafc;
-  border-right: 1px solid #c0ccda;
-}
-.content{
-  /* padding: 2px; */
-  /* margin: 2px; */
-  border:1px solid #d3dce6;
+  /* border-right: 1px solid #c0ccda; */
 }
 
-.title {
-  height: 20px;
-  border-bottom: 1px solid #d3dce6;
-  background-color: #f9fafc;
-  padding: 10px;
-  text-align: left;
-}
-
-.goods-type {
-  clear: both;
-}
-/* 设置边距 */
-.cookList {
-  padding: 2px;
-  margin: 2px;
-}
-.cookList li {
-  list-style: none;
-  width: 23%;
-  border: 1px solid #e5e9f2;
-  height: auto;
-  overflow: hidden;
-  background-color: #fff;
-  padding: 2px;
-  float: left;
-  margin: 2px;
-  cursor: pointer;
-}
-.cookList li span {
-  display: block;
-  float: left;
-}
-.foodImg {
-  width: 40%;
-}
-.foodName {
-  font-size: 16px;
-  padding-left: 10px;
-  color: brown;
-}
-.foodPrice {
-  font-size: 16px;
-  padding-left: 10px;
-  padding-top: 10px;
-}
 .totalDiv{
      background-color: #FFF;
      padding: 15px;
@@ -549,6 +490,9 @@ export default {
     margin-top: 10px;
     align-content: center;
   }
-
+.el-row{
+  width: 89%;
+  float:right;
+}
 </style>
 

@@ -1,7 +1,9 @@
 <template>
+<div>
+  <leftNav></leftNav>
   <el-table
     :data="tableData3"
-    style="width:100%"
+    style="width:80%"
     height="800">
     <el-table-column
       fixed
@@ -49,10 +51,15 @@
       </template>
     </el-table-column>
   </el-table>
+</div>
 </template>
 
 <script>
+import leftNav from '@/components/common/leftNav'
   export default {
+    components:{
+      leftNav
+    },
     methods: {
       detailClick(row) {
         console.log(row);

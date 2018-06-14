@@ -1,50 +1,33 @@
 <template>
 <div>
-  <div class="left-nav">
-    <el-tree
-      :data="data"
-      :props="defaultProps"
-      accordion
-      @node-click="handleNodeClick">
-    </el-tree>
-  </div>
+  <leftNav></leftNav>
   <div>
     <el-row>
       <el-col :span="23">
-          <div class="title">项目详细信息</div>
+          <div class="title">机构详细信息</div>
             <el-form :model="ruleForm" ref="ruleForm" label-width="120px" class="demo-ruleForm">
-              <el-form-item label="检查项目名称" prop="name">
+              <el-form-item label="添加日期">
                 <el-col :span="24">
-                  <el-input v-model="ruleForm.name" disabled="true"></el-input>
+                  <el-input v-model="ruleForm.date" disabled=true></el-input>
                 </el-col>
               </el-form-item>
-              <el-form-item label="检查项目简介" prop="desc">
-                  <el-input type="textarea" v-model="ruleForm.desc" disabled="true"></el-input>
+              <el-form-item label="机构名称">
+                  <el-input v-model="ruleForm.name" disabled=true></el-input>
               </el-form-item>
-              <el-form-item label="检查年份">
-                  <el-col :span="7">
-                    <el-input v-model="ruleForm.date" disabled="true"></el-input> 
+              <el-form-item label="机构拼音">
+                  <el-col :span="24">
+                    <el-input v-model="ruleForm.pinyin" disabled=true></el-input> 
                   </el-col>
               </el-form-item>
               
-              <el-form-item label="检查对象" prop="target">
+              <el-form-item label="机构编号">
                 <el-col :span="24">
-                  <el-input v-model="ruleForm.target" disabled="true"></el-input>
+                  <el-input v-model="ruleForm.id" disabled=true></el-input>
                 </el-col>
               </el-form-item>
-              <el-form-item label="组长" prop="leader">
+              <el-form-item label="添加人">
                 <el-col :span="24">
-                  <el-input v-model="ruleForm.leader" disabled="true"></el-input>
-                </el-col>
-              </el-form-item>
-              <el-form-item label="主查" prop="master">
-                <el-col :span="24">
-                  <el-input v-model="ruleForm.master" disabled="true"></el-input>
-                </el-col>
-              </el-form-item>
-              <el-form-item label="成员" prop="slaver">
-                <el-col :span="24">
-                  <el-input v-model="ruleForm.slaver" disabled="true"></el-input>
+                  <el-input v-model="ruleForm.author" disabled=true></el-input>
                 </el-col>
               </el-form-item>
               <el-form-item>
@@ -70,13 +53,11 @@ export default {
   data() {
     return {
       ruleForm: {
-        name: "深化整治银行业市场乱象的检查",
-        desc: "深化整治银行业市场乱象的检查",
-        date: "2018-06-13",
-        target:"中国银行、农业银行",
-        leader:"张三",
-        master:"李四",
-        slaver:"王五"
+        date: '2018-05-03',
+        name: '中国建设银行',
+        pinyin: 'jianshe',
+        id: '100000000004',
+        author: '赵六'
       },
       data: [{
         label: '项目管理',
@@ -114,6 +95,12 @@ export default {
     };
   },
   methods: {
+    // handleNodeClick(data) {
+    //   alert(data.id);
+    //   if(data.id != undefined){
+    //     this.$router.push("/" + data.id);
+    //   }
+    // },
     submitForm(formName) {
       this.$router.go(-1);
     }

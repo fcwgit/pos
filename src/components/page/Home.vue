@@ -1,5 +1,8 @@
 <template>
-  <div>
+<div>
+  <leftNav></leftNav>
+  
+  <div class="content">
     <h1>{{ msg }}</h1>
     <ul>
       <li>
@@ -24,11 +27,16 @@
       </li>
     </ul>
   </div>
+</div>
 </template>
 
 <script>
+import leftNav from '@/components/common/leftNav'
 export default {
   name: 'Home',
+  components:{
+    leftNav
+  },
   data () {
     return {
       msg: '中国共产党第十九次全国代表大会'
@@ -43,7 +51,6 @@ li{
   list-style-type: none;
 }
 div{
-  margin: 50px auto;
   text-align: center;
 }  
 span{
@@ -53,5 +60,12 @@ span{
   vertical-align: middle;
   width:80%;
   text-indent:2em;
-}  
+} 
+
+.content{ 
+  margin: 0;
+  width: 89%;
+  height: 100%;
+  overflow: hidden;
+}
 </style>

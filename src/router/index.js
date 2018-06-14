@@ -9,17 +9,19 @@ import QueryProject from '@/components/page/QueryProject'
 import ModifyProject from '@/components/page/ModifyProject'
 import DetailProject from '@/components/page/DetailProject'
 import Login from '@/components/page/Login'
-
+import Menu from '@/components/page/Menu'
+import QueryBranch from '@/components/page/QueryBranch'
+import DetailBranch from '@/components/page/DetailBranch'
+import ModifyBranch from '@/components/page/ModifyBranch'
+import QueryUser from '@/components/page/QueryUser'
+import DetailUser from '@/components/page/DetailUser'
+import ModifyUser from '@/components/page/ModifyUser';
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'Pos',
-      component: Pos
-    },{
       path:'/home',
       component:Home
     },{
@@ -42,8 +44,29 @@ export default new Router({
       path:'/detailProject',
       component:DetailProject
     },{
-      path:'/login',
+      path:'/menu',
+      component:Menu
+    },{
+      path:'/',
       component:Login
+    },{
+      path:'/queryBranch',
+      component:QueryBranch
+    },{
+      path:'/detailBranch',
+      component:DetailBranch
+    },{
+      path:'/modifyBranch',
+      component:ModifyBranch
+    },{
+      path:'/queryUser',
+      component:QueryUser
+    },{
+      path:'/detailUser',
+      component:DetailUser
+    },{
+      path:'/modifyUser',
+      component:ModifyUser
     }
   ]
 })

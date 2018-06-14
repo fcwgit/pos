@@ -4,29 +4,27 @@
     <!-- <i class="icon iconfont icon-dianpu"></i>
     <i class="icon iconfont icon-gongnengjianyi"></i>
     <i class="icon iconfont icon-shouji"></i> -->
-    <leftNav></leftNav>
-    <div class="main">
-      <router-view/>
-    </div>
+    <!-- <leftNav></leftNav> -->
+    <!-- <menu></menu> -->
+    <router-view/>
     
   </div>
 </template>
 
-<script>
-import leftNav from '@/components/common/leftNav'
+<script>  
+// import leftNav from '@/components/common/leftNav'
+// import menu from '@/components/page/Menu'
 export default {
   name: 'App',
-  components:{
-    leftNav
-  },
+  // components:{
+  //   leftNav
+  // },
   mounted(){
     let w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     let h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
     if(h<950){
       h = 950;
     }
-    // console.log(w);
-    // console.log(h);
     document.getElementById("app").style.width = w + 'px';
     document.getElementById("app").style.height = h + 'px';
   }
@@ -41,13 +39,13 @@ export default {
   /* text-align: left; */
   color: #2c3e50;
   /* margin-top: 60px; */
-  /* width: 1200px;
-  height: 1000px; */
+  /* width: 1200px;*/
+  height: 100%; 
 }
 .main{
-  float: left;
-  width: 95%;
-  background-color: #EFF2F7;
+  /* float: left; */
+  width: 100%;
+  /* background-color: #EFF2F7; */
   height: 100%;
   overflow: hidden;
   
