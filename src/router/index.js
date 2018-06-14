@@ -18,6 +18,7 @@ import DetailUser from '@/components/page/DetailUser'
 import ModifyUser from '@/components/page/ModifyUser'
 import AddUser from '@/components/page/AddUser'
 import AddBranch from '@/components/page/AddBranch'
+import Tree from '@/components/page/Tree'
 
 Vue.use(Router)
 
@@ -75,6 +76,9 @@ export default new Router({
     },{
       path:'/addUser',
       component:AddUser
+    },{
+      path:'/tree',
+      component:Tree
     }
   ]
 })
