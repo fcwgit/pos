@@ -15,7 +15,9 @@ import DetailBranch from '@/components/page/DetailBranch'
 import ModifyBranch from '@/components/page/ModifyBranch'
 import QueryUser from '@/components/page/QueryUser'
 import DetailUser from '@/components/page/DetailUser'
-import ModifyUser from '@/components/page/ModifyUser';
+import ModifyUser from '@/components/page/ModifyUser'
+import AddUser from '@/components/page/AddUser'
+import AddBranch from '@/components/page/AddBranch'
 
 Vue.use(Router)
 
@@ -67,6 +69,12 @@ export default new Router({
     },{
       path:'/modifyUser',
       component:ModifyUser
+    },{
+      path:'/addBranch',
+      component:AddBranch
+    },{
+      path:'/addUser',
+      component:AddUser
     }
   ]
 })

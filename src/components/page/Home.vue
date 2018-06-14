@@ -1,32 +1,26 @@
 <template>
 <div>
-  <leftNav></leftNav>
+  <div>
+    <leftNav></leftNav>
+  </div>
   
-  <div class="content">
-    <h1>{{ msg }}</h1>
-    <ul>
+  <div>
+    <ul style="list-style-type:none;text-align:left;margin-left:150px">
       <li>
-        <p>
-          <span>2017年10月18日上午9:00，中国共产党第十九次全国代表大会在人民大会堂开幕。习近平代表第十八届中央委员会向大会作了题为《决胜全面建成小康社会 夺取新时代中国特色社会主义伟大胜利》的报告。</span>
-        </p>
+        <router-link to="/createProject">1、事项清单</router-link>
       </li>
       <li>
-        <p>
-          <span>这次大会的主题是：不忘初心，牢记使命，高举中国特色社会主义伟大旗帜，决胜全面建成小康社会，夺取新时代中国特色社会主义伟大胜利，为实现中华民族伟大复兴的中国梦不懈奋斗。</span>
-        </p>
+        <router-link to="/createProject">2、检查对象库</router-link>
       </li>
       <li>
-        <p>
-          <span>党的十九大，是在全面建成小康社会决胜阶段、中国特色社会主义发展关键时期召开的一次十分重要的大会。承担着谋划决胜全面建成小康社会、深入推进社会主义现代化建设的重大任务，事关党和国家事业继往开来，事关中国特色社会主义前途命运，事关最广大人民根本利益。</span>
-        </p>
+        <router-link to="/createProject">3、检查人员库</router-link>
       </li>
       <li>
-        <p>
-          <span>2017年10月24日，中国共产党第十九次全国代表大会在选举产生新一届中央委员会和中央纪律检查委员会，通过关于十八届中央委员会报告的决议、关于十八届中央纪律检查委员会工作报告的决议、关于《中国共产党章程（修正案）》的决议后，在人民大会堂胜利闭幕。 </span>
-        </p>
+        <router-link to="/createProject">4、检查项目</router-link>
       </li>
     </ul>
   </div>
+  
 </div>
 </template>
 
@@ -39,7 +33,7 @@ export default {
   },
   data () {
     return {
-      msg: '中国共产党第十九次全国代表大会'
+      
     }
   }
 }
@@ -47,9 +41,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-li{
+/* li{
   list-style-type: none;
-}
+} */
 div{
   text-align: center;
 }  
@@ -67,5 +61,11 @@ span{
   width: 89%;
   height: 100%;
   overflow: hidden;
+
 }
+
+.listBox {  
+      margin-top:20%;  
+      margin-left:40%;
+  } 
 </style>
