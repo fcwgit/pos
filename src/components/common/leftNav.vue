@@ -16,31 +16,40 @@
     data() {
       return {
         data: [{
-          label: '项目管理',
+          label: '检查项目管理',
           children: [{
-            label: '新建项目',
+            label: '新建检查项目',
             id:'createProject'
           },{
-            label: '查询项目',
+            label: '管理检查项目',
             id:'queryProject'
           }
           ]
         }, {
-          label: '机构管理',
+          label: '检查机构库管理',
           children: [{
-            label: '添加机构',
+            label: '批量上传检查机构',
             id:'addBranch'
           }, {
-            label: '查询机构',
+            label: '管理检查机构库',
             id:'queryBranch'
           }]
         }, {
-          label: '用户管理',
+          label: '检查人员管理',
           children: [{
-            label: '新增管理员',
+            label: '批量上传检查人员',
             id:'addUser'
           }, {
-            label: '查询管理员',
+            label: '管理检查人员库',
+            id:'queryUser'
+          }]
+        },{
+          label: '系统用户管理',
+          children: [{
+            label: '新建用户',
+            id:'addUser'
+          }, {
+            label: '修改用户',
             id:'queryUser'
           }]
         }],

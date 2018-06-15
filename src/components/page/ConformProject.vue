@@ -417,6 +417,103 @@ export default {
               alias:'工行重庆分行'
             }]
           }]
+        },
+        {
+          id: 2,
+          label: '邮储',
+          children: [{
+            id: 4,
+            label: '中国工商银行',
+            children: [{
+              id: 9,
+              label: '北京分行',
+              alias:'工行北京分行'
+            }, {
+              id: 10,
+              label: '天津分行',
+              alias:'工行天津分行'
+            }, {
+              id: 11,
+              label: '山东分行',
+              alias:'工行山东分行'
+            }, {
+              id: 12,
+              label: '上海分行',
+              alias:'工行上海分行'
+            }, {
+              id: 13,
+              label: '河北分行',
+              alias:'工行河北分行'
+            }, {
+              id: 14,
+              label: '重庆分行',
+              alias:'工行重庆分行'
+            }, {
+              id: 15,
+              label: '重庆分行',
+              alias:'工行重庆分行'
+            }, {
+              id: 16,
+              label: '重庆分行',
+              alias:'工行重庆分行'
+            }, {
+              id: 17,
+              label: '重庆分行',
+              alias:'工行重庆分行'
+            }, {
+              id: 18,
+              label: '重庆分行',
+              alias:'工行重庆分行'
+            }]
+          }]
+        },{
+          id: 3,
+          label: '政策性',
+          children: [{
+            id: 4,
+            label: '中国工商银行',
+            children: [{
+              id: 9,
+              label: '北京分行',
+              alias:'工行北京分行'
+            }, {
+              id: 10,
+              label: '天津分行',
+              alias:'工行天津分行'
+            }, {
+              id: 11,
+              label: '山东分行',
+              alias:'工行山东分行'
+            }, {
+              id: 12,
+              label: '上海分行',
+              alias:'工行上海分行'
+            }, {
+              id: 13,
+              label: '河北分行',
+              alias:'工行河北分行'
+            }, {
+              id: 14,
+              label: '重庆分行',
+              alias:'工行重庆分行'
+            }, {
+              id: 15,
+              label: '重庆分行',
+              alias:'工行重庆分行'
+            }, {
+              id: 16,
+              label: '重庆分行',
+              alias:'工行重庆分行'
+            }, {
+              id: 17,
+              label: '重庆分行',
+              alias:'工行重庆分行'
+            }, {
+              id: 18,
+              label: '重庆分行',
+              alias:'工行重庆分行'
+            }]
+          }]
         }],
         defaultProps: {
           children: 'children',
